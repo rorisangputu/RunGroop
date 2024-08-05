@@ -1,6 +1,6 @@
 ﻿using RunGroop.Models;
 
-namespace RunGroop;
+namespace RunGroop.Interfaces;
 
 public interface IClubRepository
 {
