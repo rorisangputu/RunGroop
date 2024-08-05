@@ -9,4 +9,10 @@ public class ClubController : Controller
     {
         return View();
     }
+
+    // public IActionResult Detail(int id)
+    // {
+    //     Club
+    // }
+
 }
