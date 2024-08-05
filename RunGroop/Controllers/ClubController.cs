@@ -21,7 +21,7 @@ namespace RunGroop.Controllers
 
         public IActionResult Detail(int id)
         {
-            var club = _context.Clubs.FirstOrDefault(c => c.Id == id);
+            var club = _context.Clubs.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
             if (club == null)
             {
                 return NotFound(); // Return 404 if club not found
