@@ -20,12 +20,11 @@
         <div class="col-md-4">
             <h3 class="my-3">Club Description</h3>
             <p>@Model.Description</p>
-            <h3 class="my-3">Project Details</h3>
-            <ul>
-                <li>Lorem Ipsum</li>
-                <li>Dolor Sit Amet</li>
-                <li>Consectetur</li>
-                <li>Adipiscing Elit</li>
+            <h3 class="my-3">Location</h3>
+            <ul  style="list-style-type: none" >
+                <li>@Model.Address.Street</li>
+                <li>@Model.Address.City</li>
+                <li>@Model.Address.State</li>
             </ul>
         </div>
 
