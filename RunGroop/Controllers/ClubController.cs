@@ -19,15 +19,15 @@ namespace RunGroop.Controllers
             return View(clubs);
         }
 
-        // public IActionResult Detail(int id)
-        // {
-        //     var club = _context.Clubs.FirstOrDefault(c => c.Id == id);
-        //     if (club == null)
-        //     {
-        //         return NotFound(); // Return 404 if club not found
-        //     }
-        //     return View(club);
-        // }
+        public IActionResult Detail(int id)
+        {
+            var club = _context.Clubs.FirstOrDefault(c => c.Id == id);
+            if (club == null)
+            {
+                return NotFound(); // Return 404 if club not found
+            }
+            return View(club);
+        }
 
         // Additional actions for Create, Edit, Delete, etc.
     }
