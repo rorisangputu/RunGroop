@@ -1,28 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RunGroop.Data;
+using RunGroop.Interfaces;
+using RunGroop.Models;
 
 namespace RunGroop.Controllers
 {
     public class ClubController : Controller
     {
-        private readonly ApplicationDbContext _context;
+
+        private readonly IClubRepository clubRepo;
 
         // The constructor used for dependency injection
-        public ClubController(ApplicationDbContext context)
+        public ClubController(IClubRepository clubRepository)
         {
-            _context = context;
+            clubRepo = clubRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var clubs = _context.Clubs.ToList(); // Fetching clubs from db and listing
+            IEnumerable<Club> clubs = await clubRepo.GetAll(); // Fetching clubs from db and listing
             return View(clubs);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var club = _context.Clubs.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+            Club club = await clubRepo.GetByIdAsync(id);
             if (club == null)
             {
                 return NotFound(); // Return 404 if club not found
