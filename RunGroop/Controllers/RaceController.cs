@@ -1,25 +1,28 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RunGroop.Data;
+using RunGroop.Interfaces;
+using RunGroop.Models;
 
 namespace RunGroop.Controllers
 {
     public class RaceController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        public RaceController(ApplicationDbContext dbContext)
+        private readonly IRaceRepository raceRepo;
+
+        public RaceController(IRaceRepository raceRepository)
         {
-            _context = dbContext;
+            raceRepo = raceRepository;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var races = _context.Races.ToList();
+            IEnumerable<Race> races = await raceRepo.GetAll();
             return View(races);
         }
 
-        public IActionResult Detail(int id)
+        public async Task<IActionResult> Detail(int id)
         {
-            var race = _context.Races.Include(a => a.Address).FirstOrDefault(c => c.Id == id);
+            Race race = await raceRepo.GetByIdAsync(id);
             if (race == null)
             {
                 return NotFound(); // Return 404 if club not found
