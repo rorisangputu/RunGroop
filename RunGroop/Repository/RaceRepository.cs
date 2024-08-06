@@ -31,12 +31,12 @@ namespace RunGroop.Repository
 
         public async Task<IEnumerable<Race>> GetAllRacesByCity(string City)
         {
-            return await context.Races.Where(c => c.Address.City.Contains(City)).ToListAsync();
+            return await context.Races.Include(i => i.Address).Where(c => c.Address.City.Contains(City)).ToListAsync();
         }
 
         public async Task<Race> GetByIdAsync(int id)
         {
-            return await context.Races.FirstOrDefaultAsync(i => i.Id == id);
+            return await context.Races.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
