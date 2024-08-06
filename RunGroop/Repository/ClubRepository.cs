@@ -48,7 +48,8 @@ namespace RunGroop.Repository
 
         public bool Update(Club club)
         {
-            throw new NotImplementedException();
+            context.Update(club);
+            return Save();
         }
     }
 }

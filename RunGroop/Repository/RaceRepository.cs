@@ -1,4 +1,5 @@
-﻿using RunGroop.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using RunGroop.Data;
 using RunGroop.Interfaces;
 using RunGroop.Models;
 
@@ -13,37 +14,41 @@ namespace RunGroop.Repository
         }
         public bool Add(Race race)
         {
-            throw new NotImplementedException();
+            context.Add(race);
+            return Save();
         }
 
         public bool Delete(Race race)
         {
-            throw new NotImplementedException();
+            context.Remove(race);
+            return Save();
         }
 
-        public Task<IEnumerable<Race>> GetAll()
+        public async Task<IEnumerable<Race>> GetAll()
         {
-            throw new NotImplementedException();
+            return await context.Races.ToListAsync();
         }
 
-        public Task<IEnumerable<Race>> GetAllRacesByCity(string City)
+        public async Task<IEnumerable<Race>> GetAllRacesByCity(string City)
         {
-            throw new NotImplementedException();
+            return await context.Races.Where(c => c.Address.City.Contains(City)).ToListAsync();
         }
 
-        public Task<Race> GetByIdAsync(int id)
+        public async Task<Race> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await context.Races.FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public bool Save()
         {
-            throw new NotImplementedException();
+            var saved = context.SaveChanges();
+            return saved > 0 ? true : false;
         }
 
         public bool Update(Race race)
         {
-            throw new NotImplementedException();
+            context.Update(race);
+            return Save();
         }
     }
 }
