@@ -32,12 +32,12 @@ namespace RunGroop.Repository
 
         public async Task<Club> GetByIdAsync(int id)
         {
-            return await context.Clubs.FirstOrDefaultAsync(i => i.Id == id);
+            return await context.Clubs.Include(i => i.Address).FirstOrDefaultAsync(i => i.Id == id);
         }
 
         public async Task<IEnumerable<Club>> GetClubByCity(string City)
         {
-            return await context.Clubs.Where(c => c.Address.City.Contains(City)).ToListAsync();
+            return await context.Clubs.Include(i => i.Address).Where(c => c.Address.City.Contains(City)).ToListAsync();
         }
 
         public bool Save()
