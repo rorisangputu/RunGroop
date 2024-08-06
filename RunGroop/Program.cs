@@ -1,9 +1,14 @@
 using RunGroop.Data;
+using RunGroop.Interfaces;
+using RunGroop.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<IClubRepository, ClubRepository>();
+builder.Services.AddScoped<IRaceRepository, RaceRepository>();
 
 var ConnString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddSqlite<ApplicationDbContext>(ConnString);
