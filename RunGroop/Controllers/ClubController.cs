@@ -33,6 +33,11 @@ namespace RunGroop.Controllers
             return View(club);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         // Additional actions for Create, Edit, Delete, etc.
     }
 }
