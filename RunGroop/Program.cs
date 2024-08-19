@@ -1,4 +1,5 @@
 using RunGroop.Data;
+using RunGroop.Helpers;
 using RunGroop.Interfaces;
 using RunGroop.Repository;
 
@@ -9,6 +10,8 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IClubRepository, ClubRepository>();
 builder.Services.AddScoped<IRaceRepository, RaceRepository>();
+
+builder.Services.Configure<CloudinarySettings>(builder.Configuration.GetSection("CloudinarySettings"));
 
 var ConnString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddSqlite<ApplicationDbContext>(ConnString);
