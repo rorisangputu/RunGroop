@@ -39,5 +39,15 @@ namespace RunGroop.Controllers
         }
 
         // Additional actions for Create, Edit, Delete, etc.
+        [HttpPost]
+        public async Task<IActionResult> Create(Club club)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(club);
+            }
+            clubRepo.Add(club);
+            return RedirectToAction("Index");
+        }
     }
 }

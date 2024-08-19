@@ -4,7 +4,7 @@
 
 }
 <h1>Create Club</h1>
-<form>
+<form method="post" asp-action="Create">
     <div class="mb-3 form-group">
         <label asp-for="Title" class="form-label">Title:</label>
         <input asp-for="Title" type="text" class="form-control">
@@ -29,8 +29,18 @@
     </div>
     <div class="mb-3 form-group">
         <label asp-for="Address.Street" class="form-label">Street</label>
-        <input asp-for="Address.Street" type="text" class="form-control" id="Adress Street">
+        <input asp-for="Address.Street" type="text" class="form-control">
         <span asp-validation-for="Address.Street" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="Address.City" class="form-label">City</label>
+        <input asp-for="Address.City" type="text" class="form-control">
+        <span asp-validation-for="Address.City" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="Address.State" class="form-label">State</label>
+        <input asp-for="Address.State" type="text" class="form-control">
+        <span asp-validation-for="Address.State" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
