@@ -4,7 +4,7 @@
 
 }
 <h1>Create Race</h1>
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="mb-3 form-group">
         <label asp-for="Title" class="form-label">Title:</label>
         <input asp-for="Title" type="text" class="form-control">
@@ -22,11 +22,7 @@
         </select>
         <span asp-validation-for="RaceCategory" class="text-danger"></span>
     </div>
-    <div class="mb-3 form-group">
-        <label asp-for="Image" class="form-label">Image</label>
-        <input asp-for="Image" type="text" class="form-control" id="Image">
-        <span asp-validation-for="Image" class="text-danger"></span>
-    </div>
+
     <div class="mb-3 form-group">
         <label asp-for="Address.Street" class="form-label">Street</label>
         <input asp-for="Address.Street" type="text" class="form-control">
@@ -41,6 +37,11 @@
         <label asp-for="Address.State" class="form-label">State</label>
         <input asp-for="Address.State" type="text" class="form-control">
         <span asp-validation-for="Address.State" class="text-danger"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="Image" class="form-label">Image</label>
+        <input asp-for="Image" type="file" class="form-control" id="Image">
+        <span asp-validation-for="Image" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RunGroop.Data;
 using RunGroop.Interfaces;
 using RunGroop.Models;
+using RunGroop.ViewModels;
 
 namespace RunGroop.Controllers
 {
@@ -10,11 +11,13 @@ namespace RunGroop.Controllers
     {
 
         private readonly IClubRepository clubRepo;
+        private readonly IPhotoService _photoService;
 
         // The constructor used for dependency injection
-        public ClubController(IClubRepository clubRepository)
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
         {
             clubRepo = clubRepository;
+            _photoService = photoService;
         }
 
         public async Task<IActionResult> Index()
@@ -40,14 +43,27 @@ namespace RunGroop.Controllers
 
         // Additional actions for Create, Edit, Delete, etc.
         [HttpPost]
-        public async Task<IActionResult> Create(Club club)
+        public async Task<IActionResult> Create(CreateClubViewModel clubVM)
         {
             if (!ModelState.IsValid)
             {
-                return View(club);
+                var result = await _photoService.AddPhotoAsync(clubVM.Image);
+
+                var club = new Club
+                {
+                    Title = clubVM.Title,
+                    Description = clubVM.Description,
+                    Image = result.Url.ToString()
+                };
+                clubRepo.Add(club);
+                return RedirectToAction("Index");
             }
-            clubRepo.Add(club);
-            return RedirectToAction("Index");
+            else
+            {
+                ModelState.AddModelError("", "Photo upload failed");
+            }
+            return View(clubVM);
+
         }
     }
 }
