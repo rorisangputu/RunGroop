@@ -50,6 +50,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFjZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/roriputu/Documents/Web-Dev/ASPNET/RunGroop/RunGroop/Views/Race/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFjZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/roriputu/Documents/Web-Dev/ASPNET/RunGroop/RunGroop/Views/Race/Detail.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmFjZS9EZXRhaWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
