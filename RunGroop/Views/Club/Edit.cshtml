@@ -1,11 +1,11 @@
 ﻿@using RunGroop.Data.Enum
-@using RunGroop.ViewModels
-@model CreateRaceViewModel
+@using RunGroop.ViewModels;
+@model EditClubViewModel
 @{
-
 }
-<h1>Create Race</h1>
-<form method="post" asp-action="Create" enctype="multipart/form-data">
+<h1>Edit Club</h1>
+<form method="post" asp-action="Edit" enctype="multipart/form-data">
+    <input type="hidden" value="AddressId" id="AddressId">
     <div class="mb-3 form-group">
         <label asp-for="Title" class="form-label">Title:</label>
         <input asp-for="Title" type="text" class="form-control">
@@ -17,14 +17,15 @@
         <span asp-validation-for="Description" class="text-danger"></span>
     </div>
     <div class="mb-3 form-group">
-        <label asp-for="RaceCategory" class="form-label">Category</label>
-        <select asp-for="RaceCategory" asp-items="@Html.GetEnumSelectList<RaceCategory>()">
+        <label asp-for="ClubCategory" class="form-label">Category</label>
+        <select asp-for="ClubCategory" asp-items="@Html.GetEnumSelectList<ClubCategory>()">
             <option value="">--Select--</option>
         </select>
-        <span asp-validation-for="RaceCategory" class="text-danger"></span>
+        <span asp-validation-for="ClubCategory" class="text-danger"></span>
     </div>
 
     <div class="mb-3 form-group">
+
         <label asp-for="Address.Street" class="form-label">Street</label>
         <input asp-for="Address.Street" type="text" class="form-control">
         <span asp-validation-for="Address.Street" class="text-danger"></span>
