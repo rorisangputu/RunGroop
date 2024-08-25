@@ -10,7 +10,6 @@ namespace RunGroop.Controllers
 {
     public class ClubController : Controller
     {
-
         private readonly IClubRepository clubRepo;
         private readonly IPhotoService _photoService;
 
