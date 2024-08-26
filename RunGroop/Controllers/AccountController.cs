@@ -30,7 +30,7 @@ namespace RunGroop.Controllers
         public async Task<IActionResult> Login(LoginViewModel loginVM)
         {
             if (!ModelState.IsValid) return View(loginVM);
-            var user = await _userManager.FindByEmailAsync(loginVM.Email);
+            var user = await _userManager.FindByEmailAsync(loginVM.EmailAddress);
 
             if (user != null)
             {
@@ -41,7 +41,7 @@ namespace RunGroop.Controllers
                     var result = await _signInManager.PasswordSignInAsync(user, loginVM.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Club");
                     }
                 }
                 //Password is incorrect
