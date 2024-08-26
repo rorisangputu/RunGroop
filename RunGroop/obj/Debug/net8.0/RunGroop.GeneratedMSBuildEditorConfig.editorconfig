@@ -18,6 +18,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/roriputu/Documents/Web-Dev/ASPNET/RunGroop/RunGroop
 build_property._RazorSourceGeneratorDebug = 
 
+[/Users/roriputu/Documents/Web-Dev/ASPNET/RunGroop/RunGroop/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/roriputu/Documents/Web-Dev/ASPNET/RunGroop/RunGroop/Views/Club/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2x1Yi9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
