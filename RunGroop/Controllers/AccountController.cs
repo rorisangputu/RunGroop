@@ -53,5 +53,12 @@ namespace RunGroop.Controllers
             return View(loginVM);
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            var response = new RegisterViewModel();
+            return View(response);
+        }
+
     }
 }
