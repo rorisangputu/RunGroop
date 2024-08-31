@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using RunGroop.Data;
 using RunGroop.Interfaces;
+using RunGroop.ViewModels;
 
 namespace RunGroop.Controllers
 {
@@ -17,7 +18,14 @@ namespace RunGroop.Controllers
         // GET: DashboardController
         public async Task<IActionResult> Index()
         {
-            return View();
+            var userRaces = await dashboardRepo.GetAllUserRaces();
+            var userClubs = await dashboardRepo.GetAllUserClubs();
+            var dashboardVM = new DashboardViewModel()
+            {
+                Races = userRaces,
+                Clubs = userClubs
+            };
+            return View(dashboardVM);
         }
 
     }
