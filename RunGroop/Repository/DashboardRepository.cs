@@ -1,4 +1,5 @@
 using System;
+using RunGroop.Data;
 using RunGroop.Interfaces;
 using RunGroop.Models;
 
@@ -6,13 +7,25 @@ namespace RunGroop.Repository;
 
 public class DashboardRepository : IDashboardRepository
 {
-    public Task<List<Club>> GetAllUserClubs()
+    private readonly ApplicationDbContext _context;
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public DashboardRepository(ApplicationDbContext context, IHttpContextAccessor httpContextAccessor)
     {
-        throw new NotImplementedException();
+        _context = context;
+        _httpContextAccessor = httpContextAccessor;
+    }
+    public async Task<List<Club>> GetAllUserClubs()
+    {
+        var curUser = _httpContextAccessor.HttpContext?.User;
+        var userClubs = _context.Clubs.Where(r => r.AppUser.Id == curUser.ToString());
+        return userClubs.ToList();
     }
 
-    public Task<List<Race>> GetAllUserRaces()
+    public async Task<List<Race>> GetAllUserRaces()
     {
-        throw new NotImplementedException();
+        var curUser = _httpContextAccessor.HttpContext?.User;
+        var userRaces = _context.Races.Where(r => r.AppUser.Id == curUser.ToString());
+        return userRaces.ToList();
     }
 }
