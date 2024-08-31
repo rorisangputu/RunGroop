@@ -1,20 +1,21 @@
 using Microsoft.AspNetCore.Mvc;
 using RunGroop.Data;
+using RunGroop.Interfaces;
 
 namespace RunGroop.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IDashboardRepository dashboardRepo;
 
-        public DashboardController(ApplicationDbContext context)
+        public DashboardController(IDashboardRepository dashboardRepository)
         {
-            _context = context;
+            dashboardRepo = dashboardRepository;
         }
 
 
         // GET: DashboardController
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }
