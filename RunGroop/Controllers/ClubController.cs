@@ -52,7 +52,7 @@ namespace RunGroop.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateClubViewModel clubVM)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 var result = await _photoService.AddPhotoAsync(clubVM.Image);
 
