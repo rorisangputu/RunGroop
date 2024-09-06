@@ -6,7 +6,7 @@ namespace RunGroop.Interfaces;
 public interface IUserRepository
 {
     Task<IEnumerable<AppUser>> GetAllUsers();
-    Task<AppUser> GetUserId(string id);
+    Task<AppUser> GetUserById(string id);
     bool Add(AppUser user);
     bool Update(AppUser user);
     bool Delete(AppUser user);

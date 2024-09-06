@@ -1,4 +1,6 @@
 using System;
+using Microsoft.EntityFrameworkCore;
+using RunGroop.Data;
 using RunGroop.Interfaces;
 using RunGroop.Models;
 
@@ -6,14 +8,21 @@ namespace RunGroop.Repository;
 
 public class UserRepository : IUserRepository
 {
-    public Task<IEnumerable<AppUser>> GetAllUsers()
+    private readonly ApplicationDbContext _dbContext;
+
+    public UserRepository(ApplicationDbContext dbContext)
     {
-        throw new NotImplementedException();
+        _dbContext = dbContext;
     }
 
-    public Task<AppUser> GetUserId(string id)
+    public async Task<IEnumerable<AppUser>> GetAllUsers()
     {
-        throw new NotImplementedException();
+        return await _dbContext.Users.ToListAsync();
+    }
+
+    public async Task<AppUser> GetUserById(string id)
+    {
+        return await _dbContext.Users.FindAsync(id);
     }
 
     public bool Add(AppUser user)
@@ -23,7 +32,8 @@ public class UserRepository : IUserRepository
 
     public bool Update(AppUser user)
     {
-        throw new NotImplementedException();
+        _dbContext.Update(user);
+        return Save();
     }
 
     public bool Delete(AppUser user)
@@ -33,7 +43,8 @@ public class UserRepository : IUserRepository
 
     public bool Save()
     {
-        throw new NotImplementedException();
+        var saved = _dbContext.SaveChanges();
+        return saved > 0 ? true : false;
     }
 
 }
