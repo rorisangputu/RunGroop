@@ -44,7 +44,7 @@ namespace RunGroop.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateRaceViewModel raceVM)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid) //potential problem if not entering if
             {
 
                 var result = await _photoService.AddPhotoAsync(raceVM.Image);
