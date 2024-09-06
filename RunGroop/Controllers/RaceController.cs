@@ -36,7 +36,7 @@ namespace RunGroop.Controllers
 
         public IActionResult Create()
         {
-            var curUserId = _httpContentAccessor.HttpContext?.User.GetUserId();
+            var curUserId = _httpContentAccessor.HttpContext.User.GetUserId();
             var createRaceViewModel = new CreateRaceViewModel { AppUserId = curUserId };
             return View(createRaceViewModel);
         }
