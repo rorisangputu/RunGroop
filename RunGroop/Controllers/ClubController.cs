@@ -12,12 +12,15 @@ namespace RunGroop.Controllers
     {
         private readonly IClubRepository clubRepo;
         private readonly IPhotoService _photoService;
+        private readonly IHttpContextAccessor _httpContentAccessor;
+
 
         // The constructor used for dependency injection
-        public ClubController(IClubRepository clubRepository, IPhotoService photoService)
+        public ClubController(IClubRepository clubRepository, IPhotoService photoService, IHttpContextAccessor httpContextAccessor)
         {
             clubRepo = clubRepository;
             _photoService = photoService;
+            _httpContentAccessor = httpContextAccessor;
         }
 
         public async Task<IActionResult> Index()
@@ -39,7 +42,9 @@ namespace RunGroop.Controllers
 
         public IActionResult Create()
         {
-            return View();
+            var curUserId = _httpContentAccessor.HttpContext.User.GetUserId();
+            var createClubViewModel = new CreateClubViewModel { AppUserId = curUserId };
+            return View(createClubViewModel);
         }
 
         // Additional actions for Create, Edit, Delete, etc.
