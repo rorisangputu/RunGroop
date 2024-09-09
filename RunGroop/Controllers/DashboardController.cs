@@ -28,5 +28,10 @@ namespace RunGroop.Controllers
             return View(dashboardVM);
         }
 
+        public async Task<IActionResult> EditUserProfile()
+        {
+            return View();
+        }
+
     }
 }
