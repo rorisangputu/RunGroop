@@ -9,11 +9,14 @@ namespace RunGroop.Controllers
     {
         private readonly IDashboardRepository dashboardRepo;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IPhotoService _photoService;
 
-        public DashboardController(IDashboardRepository dashboardRepository, IHttpContextAccessor httpContextAccessor)
+        public DashboardController(IDashboardRepository dashboardRepository,
+        IHttpContextAccessor httpContextAccessor, IPhotoService photoService)
         {
             dashboardRepo = dashboardRepository;
             _httpContextAccessor = httpContextAccessor;
+            _photoService = photoService;
         }
 
 
@@ -32,6 +35,8 @@ namespace RunGroop.Controllers
 
         public async Task<IActionResult> EditUserProfile()
         {
+            var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var user = await dashboardRepo.GetUserById(curUserId);
             return View();
         }
 
