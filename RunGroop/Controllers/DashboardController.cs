@@ -8,10 +8,12 @@ namespace RunGroop.Controllers
     public class DashboardController : Controller
     {
         private readonly IDashboardRepository dashboardRepo;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public DashboardController(IDashboardRepository dashboardRepository)
+        public DashboardController(IDashboardRepository dashboardRepository, IHttpContextAccessor httpContextAccessor)
         {
             dashboardRepo = dashboardRepository;
+            _httpContextAccessor = httpContextAccessor;
         }
 
 
