@@ -37,7 +37,17 @@ namespace RunGroop.Controllers
         {
             var curUserId = _httpContextAccessor.HttpContext.User.GetUserId();
             var user = await dashboardRepo.GetUserById(curUserId);
-            return View();
+            if (user == null) return View("Error");
+            var editUserViewModel = new EditUserViewModel()
+            {
+                Id = curUserId,
+                Pace = user.Pace,
+                Mileage = user.Mileage,
+                ProfileImageUrl = user.ProfileImageUrl,
+                City = user.City,
+                State = user.State
+            };
+            return View(editUserViewModel);
         }
 
     }
