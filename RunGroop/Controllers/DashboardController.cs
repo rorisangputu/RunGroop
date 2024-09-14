@@ -1,6 +1,8 @@
+using CloudinaryDotNet.Actions;
 using Microsoft.AspNetCore.Mvc;
 using RunGroop.Data;
 using RunGroop.Interfaces;
+using RunGroop.Models;
 using RunGroop.ViewModels;
 
 namespace RunGroop.Controllers
@@ -19,6 +21,15 @@ namespace RunGroop.Controllers
             _photoService = photoService;
         }
 
+        private void MapUserEdit(AppUser user, EditUserViewModel editVM, ImageUploadResult photoResult)
+        {
+            user.Id = editVM.Id;
+            user.Pace = editVM.Pace;
+            user.Mileage = editVM.Mileage;
+            user.ProfileImageUrl = photoResult.Url.ToString();
+            user.City = editVM.City;
+            user.State = editVM.State;
+        }
 
         // GET: DashboardController
         public async Task<IActionResult> Index()
@@ -60,6 +71,37 @@ namespace RunGroop.Controllers
             }
 
             var user = await dashboardRepo.GetUserByIdNoTracking(editUserVM.Id);
+
+            if (user.ProfileImageUrl == "" || user.ProfileImageUrl == null)
+            {
+                var photoResult = await _photoService.AddPhotoAsync(editUserVM.Image);
+
+                MapUserEdit(user, editUserVM, photoResult);
+
+                dashboardRepo.Update(user);
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                try
+                {
+                    await _photoService.DeletePhotoAsync(user.ProfileImageUrl);
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", "Could'nt delete profile image");
+                    return View(editUserVM);
+                }
+
+                var photoResult = await _photoService.AddPhotoAsync(editUserVM.Image);
+
+                MapUserEdit(user, editUserVM, photoResult);
+
+                dashboardRepo.Update(user);
+
+                return RedirectToAction("Index");
+            }
         }
 
     }

@@ -40,4 +40,17 @@ public class DashboardRepository : IDashboardRepository
     {
         return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
     }
+
+    public bool Update(AppUser user)
+    {
+        _context.Users.Update(user);
+        return Save();
+    }
+
+    public bool Save()
+    {
+        var saved = _context.SaveChanges();
+        return saved > 0 ? true : false;
+    }
+
 }
