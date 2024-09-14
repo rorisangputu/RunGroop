@@ -1,4 +1,5 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using RunGroop.Data;
 using RunGroop.Interfaces;
 using RunGroop.Models;
@@ -33,5 +34,10 @@ public class DashboardRepository : IDashboardRepository
     public async Task<AppUser> GetUserById(string id)
     {
         return await _context.Users.FindAsync(id);
+    }
+
+    public async Task<AppUser> GetUserByIdNoTracking(string id)
+    {
+        return await _context.Users.Where(u => u.Id == id).AsNoTracking().FirstOrDefaultAsync();
     }
 }
