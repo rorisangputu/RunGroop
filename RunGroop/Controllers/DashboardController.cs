@@ -50,5 +50,17 @@ namespace RunGroop.Controllers
             return View(editUserViewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> EditUserProfile(EditUserViewModel editUserVM)
+        {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Failed to edit profile");
+                return View("EditUserProfile", editUserVM);
+            }
+
+            var user = await dashboardRepo.GetUserByIdNoTracking(editUserVM.Id);
+        }
+
     }
 }
