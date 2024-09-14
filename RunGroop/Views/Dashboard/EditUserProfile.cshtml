@@ -74,15 +74,10 @@
                                         : Model.ProfileImageUrl;
                                     }
                                     <img alt="Image" src="@imageUrl" class="avatar avatar-lg mb-3 mb-md-0" />
-                                    <div class="media-body">
-                                        <label asp-for="Image" class="custom-file mb-2" for="file2">
-                                            <input asp-for="Image" type="file" id="file2"
-                                                class="custom-file-input height-0" oninput="submitProfileImage();" />
-                                            <span class="btn btn-primary"><i
-                                                    class="icon-upload-to-cloud">&nbsp;</i>Upload</span>
-                                            <span asp-validation-for="Image" class="text-danger"></span>
-                                            <button id="submit-image-button" type="submit" hidden></button>
-                                        </label>
+                                    <div class="media-body form-group">
+                                        <label asp-for="Image">Profile Image</label>
+                                        <input asp-for="Image" type="file" class="form-control" placeholder="Image">
+                                        <span asp-validation-for="Image" class="text-danger"></span>
                                         <div>
                                             <small>For best results, use an image at least 256px by 256px in either
                                                 .jpg or .png format</small>
