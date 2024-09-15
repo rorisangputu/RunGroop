@@ -26,10 +26,12 @@
     </nav>
     <section class="bg-white">
         <div class="container">
-            <div class="row justify-content-center">
+            <div class="row justify-content-left mb-3">
                 <div class="col-12 col-md-8">
                     <div class="media">
-                        @* <img alt="Image" src="@Model.ProfileImageUrl" class="mr-md-5 avatar avatar-xlg"> *@
+                        <img alt="Image" src="@Model.ProfileImageUrl" style="width: 100px; height: 100px;"
+                            class="mr-md-5 avatar">
+
                         <div class="media-body">
                             <div class="mb-3">
                                 <h1 class="h2 mb-2">@Model.UserName</h1>
