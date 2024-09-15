@@ -1,8 +1,11 @@
 using System.Diagnostics;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using RunGroop.Helpers;
 using RunGroop.Interfaces;
 using RunGroop.Models;
+using RunGroop.ViewModels;
 
 namespace RunGroop.Controllers;
 
@@ -21,6 +24,18 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         var ipInfo = new IPInfo();
+        var homeViewModel = new HomeViewModel();
+        try
+        {
+            string url = "https://ipinfo.io?token=823e1ed53c1d37";
+            var info = new WebClient().DownloadString(url);
+            ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
         return View();
     }
 
