@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Globalization;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -21,7 +22,7 @@ public class HomeController : Controller
     }
 
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         var ipInfo = new IPInfo();
         var homeViewModel = new HomeViewModel();
@@ -30,13 +31,26 @@ public class HomeController : Controller
             string url = "https://ipinfo.io?token=823e1ed53c1d37";
             var info = new WebClient().DownloadString(url);
             ipInfo = JsonConvert.DeserializeObject<IPInfo>(info);
+            RegionInfo myRT1 = new RegionInfo(ipInfo.Country);
+            ipInfo.Country = myRT1.EnglishName;
+            homeViewModel.City = ipInfo.City;
+            homeViewModel.State = ipInfo.Region;
+            if (homeViewModel.City != null)
+            {
+                homeViewModel.Clubs = await clubRepo.GetClubByCity(homeViewModel.City);
+            }
+            else
+            {
+                homeViewModel.Clubs = null;
+            }
+            return View(homeViewModel);
         }
         catch (System.Exception)
         {
-
-            throw;
+            homeViewModel.Clubs = null;
         }
-        return View();
+
+        return View(homeViewModel);
     }
 
     public IActionResult Privacy()
