@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunGroop", "RunGroop\RunGroop.csproj", "{B7069122-CD14-4687-8E7D-7BEF29080AD3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunGroop.Tests", "RunGroop.Tests\RunGroop.Tests.csproj", "{F814890A-7164-40E5-BFB1-C1CC2A2149B0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{B7069122-CD14-4687-8E7D-7BEF29080AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7069122-CD14-4687-8E7D-7BEF29080AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7069122-CD14-4687-8E7D-7BEF29080AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F814890A-7164-40E5-BFB1-C1CC2A2149B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F814890A-7164-40E5-BFB1-C1CC2A2149B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F814890A-7164-40E5-BFB1-C1CC2A2149B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F814890A-7164-40E5-BFB1-C1CC2A2149B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
