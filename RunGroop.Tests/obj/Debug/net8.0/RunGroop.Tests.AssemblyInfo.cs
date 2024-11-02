@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RunGroop.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+068673db1553b242b8a8225fcecf944f172b4cf5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37b56f66db78ac78c7ad6c76fee1a1cbf30bd0ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("RunGroop.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RunGroop.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
